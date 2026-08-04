@@ -1,5 +1,4 @@
 # Front-End Web: Explorations in Storytelling
-Course Foundation
 
 ## Course Description and Purpose
 Front-end web development is both a technical practice and an expressive medium. The browser can do more than display information or contain an application: it can reveal, respond, remember, surprise, persuade, and tell stories through structure, image, sound, movement, interaction, data, and participation.
@@ -62,20 +61,20 @@ Web development builds on documentation, examples, libraries, tutorials, convers
 Web technologies are not neutral containers. The structures, defaults, datasets, interfaces, and stories we build can include or exclude, reveal or conceal, invite or manipulate, preserve memory or erase context. We will consider not only whether something works, but for whom it works, whose perspective it centers, what assumptions it carries, and what effects it may have. The [ITP/IMA Tech + Society project](https://techandsociety.itp.io/) offers further context for this inquiry.
 
 ### Accessibility
-We enter the course with different experiences, bodies, languages, responsibilities, and ways of understanding. If any aspect of the course creates an avoidable barrier, I invite you to speak with me so we can consider adjustments while preserving the course's essential goals. Academic accommodations and support are available through the (Moses Center for Student Accessibility)[https://www.nyu.edu/life/safety-health-wellness/students-with-disabilities.html] at 212-998-4980. Students do not need to disclose private medical details to the instructor.
+We enter the course with different experiences, bodies, languages, responsibilities, and ways of understanding. If any aspect of the course creates an avoidable barrier, I invite you to speak with me so we can consider adjustments while preserving the course's essential goals. Academic accommodations and support are available through the [Moses Center for Student Accessibility](https://www.nyu.edu/life/safety-health-wellness/students-with-disabilities.html) at 212-998-4980. Students do not need to disclose private medical details to the instructor.
 
 ### Community Commitments
-This course follows the (ITP/IMA Community Guidelines)[https://community.itp.io/]. Critique should be candid and generous: we will discuss the work rather than diminish the maker, ask questions before imposing interpretations, make space for different forms of participation, and treat confusion as an opportunity for collective inquiry. Consent and care also matter when projects collect information, represent other people, use sensitive material, or ask an audience to participate.
+This course follows the [ITP/IMA Community Guidelines](https://community.itp.io/). Critique should be candid and generous: we will discuss the work rather than diminish the maker, ask questions before imposing interpretations, make space for different forms of participation, and treat confusion as an opportunity for collective inquiry. Consent and care also matter when projects collect information, represent other people, use sensitive material, or ask an audience to participate.
 C
 ### Communication and Help
 Announcements and updates will be shared through the designated course channel; instructor contact information, office hours, response times, and links to Coding Lab and other support will be added before the semester begins. Asking for help is part of technical practice: useful requests explain what you are trying to do, what you expected, what happened instead, and what you have already tried. Students may seek support from peers, the instructor, course staff, documentation, Coding Lab, Feedback Collective, and other resources while following the course’s expectations for collaboration and attribution.
 
 ### University Support
-The NYU Wellness Exchange offers support twenty-four hours a day at 212-443-9999, through wellness.exchange@nyu.edu, and through the NYU Wellness Exchange app. Information and support concerning sexual misconduct or discrimination based on sex or gender are available through the (NYU Title IX Office)[https://www.nyu.edu/about/policies-guidelines-compliance/equal-opportunity/title9.html].
+The NYU Wellness Exchange offers support twenty-four hours a day at 212-443-9999, through wellness.exchange@nyu.edu, and through the NYU Wellness Exchange app. Information and support concerning sexual misconduct or discrimination based on sex or gender are available through the [NYU Title IX Office](https://www.nyu.edu/about/policies-guidelines-compliance/equal-opportunity/title9.html).
 
 ## Essential Links
-- (Detailed schedule and weekly materials)[https://github.com/lenincompres/f26-ima-few/wiki]
-- (Office hours, ITP communities and Help)[http://itp.nyu.help]
-- (ITP/IMA Community Guidelines)[https://community.itp.io/]
-- (ITP/IMA Tech + Society)[https://techandsociety.itp.io/]
-- (Tisch policies and handbooks)[https://tisch.nyu.edu/student-affairs/important-resources/tisch-policies-and-handbooks]
+- [Detailed schedule and weekly materials](https://github.com/lenincompres/f26-ima-few/wiki)
+- [Office hours, ITP communities and Help](https://itp.nyu.help)
+- [ITP/IMA Community Guidelines](https://community.itp.io/)
+- [ITP/IMA Tech + Society](https://techandsociety.itp.io/)
+- [Tisch policies and handbooks](https://tisch.nyu.edu/student-affairs/important-resources/tisch-policies-and-handbooks)
