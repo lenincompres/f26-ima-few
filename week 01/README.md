@@ -142,32 +142,7 @@ For this week, consider:
 
 ---
 
-## 4. Set Up Your Development Environment
-
-Install:
-
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [GitHub Desktop](https://desktop.github.com/)
-
-Connect GitHub Desktop to your GitHub account.
-
-Clone your course repository to your computer using GitHub Desktop.
-
-Inside the repository, create a folder for this week's work:
-
-`week-01`
-
-Inside that folder, create:
-
-`index.html`
-
-Copy or recreate the HTML experiment you began in class.
-
-Open the folder in Visual Studio Code and make at least one change locally.
-
----
-
-## 5. Continue the Experiment
+## 4. Continue the Experiment
 
 Continue what we began in class or create a new small experience using HTML.
 
