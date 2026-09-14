@@ -100,6 +100,7 @@ It can be drawn on paper, made digitally, or written as a diagram.
 
 For example:
 
+```
     START
       |
       v
@@ -110,6 +111,7 @@ FOREST  CITY
    |     |
    v     v
 SECRET  HOME
+```
 
 Your map does not need to be polished.
 
