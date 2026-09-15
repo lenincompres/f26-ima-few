@@ -2,27 +2,27 @@
 
 ## Question
 
-**How do we guide someone's attention?**
+**How do we guide someone through an experience?**
+
+What do they notice, understand, and do next?
 
 ## We Explore
 
-Last week, we began with a simple question: **What can a website be?**
+Last week, we began with the web we already know and asked: **What can a website be?** We looked at websites as publishing and storytelling spaces, examined some of the systems beneath them, and began making pages ourselves with HTML.
 
-We looked at websites we already encounter, examined how they reach our browsers, and began making pages ourselves with HTML.
+This week, we shift our perspective from **what we put on a page** to **what happens when someone else encounters it**.
 
-This week, we shift our attention from **what is on a page** to **how someone experiences it**.
+How does a person know where to begin? What feels important? Where can they go? What happens when information is divided across multiple pages? What makes them curious enough to continue—and what gets in their way?
 
-How does a person know where to begin? What feels important? Where can they go? What happens when information is divided across multiple pages? What makes us curious enough to continue?
+We will explore **UI/UX, user research, information architecture, sitemaps, user flows, wireframing, cognitive load, visual hierarchy, navigation, prototyping, and testing**.
 
-We will explore UI/UX, hierarchy, navigation, information architecture, affordances, and narrative flow by looking at existing websites and redesigning our own.
-
-Rather than thinking of a website as a collection of pages, we'll begin thinking of it as an **experience someone moves through**.
+Rather than thinking of a website simply as a collection of pages, we'll begin thinking of it as an **experience someone moves through**.
 
 ---
 
 ## Resources
 
-- [UI/UX Slides]()
+- [UI/UX Slides](https://docs.google.com/presentation/d/1aVbkrPL1YbHsQaoPYALGYZ2d6OKiW08qcBSnzkwsMys/edit?slide=id.g6e86c7fd2e_0_250#slide=id.g6e86c7fd2e_0_250)
 - [HTML Tutorial — W3Schools](https://www.w3schools.com/html/)
 - [HTML Reference — MDN](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [HTML Links — W3Schools](https://www.w3schools.com/html/html_links.asp)
@@ -31,13 +31,72 @@ Rather than thinking of a website as a collection of pages, we'll begin thinking
 
 ---
 
+## Map the Experience
+
+Before deciding what a website looks like, it can help to step back and ask how it is **organized** and how someone might **move through it**.
+
+### Sitemap
+
+A **sitemap** describes the structure of a website: what pages or sections exist and how they relate to one another.
+
+For example:
+
+    HOME
+    ├── ABOUT
+    ├── PROJECTS
+    │   ├── PROJECT A
+    │   └── PROJECT B
+    └── CONTACT
+
+Think of the sitemap as a map of the **territory**.
+
+### User Flow
+
+A **user flow** describes a path someone might take through that territory.
+
+For example:
+
+    HOME → PROJECTS → PROJECT A → CONTACT
+
+A website can have one sitemap but many possible user flows.
+
+Think about:
+
+- Where does someone begin?
+- What are they trying to find, understand, or accomplish?
+- What choices do they encounter?
+- Where can they go next?
+- Does everyone need to follow the same path?
+- Can there be more than one way through?
+- Can getting lost ever be intentional?
+
+---
+
+## Wireframe
+
+A **wireframe** is a simple representation of what will appear on a page and how it will be organized.
+
+Before worrying about colors, fonts, images, or polish, use a wireframe to think about:
+
+- What appears first?
+- What is most important?
+- What belongs together?
+- What can someone do?
+- What choices are available?
+- What is intentionally absent?
+- Where might they go next?
+
+A wireframe can be made on paper or digitally. It does not need to look good.
+
+Its job is to help you think.
+
+---
+
 ## Experiment
 
 ### Choose Their Path
 
-Return to the HTML experience you began last week.
-
-This time, expand it beyond a single page.
+Return to the HTML experience you began last week and expand it beyond a single page.
 
 Create at least **three connected HTML pages** and design how someone moves between them.
 
@@ -51,24 +110,18 @@ Your pages might form:
 - An argument
 - A mystery
 - A sequence of discoveries
-- Three different perspectives on the same subject
+- Different perspectives on the same subject
 - Or something stranger
 
 Use links to create relationships between the pages.
 
 For example:
 
-```html
-<a href="page2.html">Enter the room</a>
-```
+    <a href="page2.html">Continue</a>
 
-or
+But remember that the words in your links can also become part of the experience:
 
-```html
-<a href="secret.html">Open the mysterious door</a>
-```
-
-The words in your links matter.
+    <a href="secret.html">Open the mysterious door</a>
 
 **"Click here"** tells someone what to do.
 
@@ -84,42 +137,45 @@ Think about:
 - Can they get lost?
 - Is getting lost sometimes part of the experience?
 - Does everyone need to encounter the pages in the same order?
+- Can the order of information create a joke, surprise, tension, or revelation?
 - What can you reveal by making someone choose?
 
-You are still working primarily with **HTML**.
+For now, continue focusing primarily on **HTML**.
 
 The challenge is not to make the pages visually beautiful yet. The challenge is to design the **journey between them**.
 
 ---
 
-## Navigation Map
+## Test
 
-Before or while you build, make a simple map of your experience.
+Give your experience to another person.
 
-It can be drawn on paper, made digitally, or written as a diagram.
+Then:
 
-For example:
+**Don't explain it.**
 
-```
-    START
-      |
-      v
-    HOME
-    /  \
-   v    v
-FOREST  CITY
-   |     |
-   v     v
-SECRET  HOME
-```
+Don't tell them where to click. Don't point out what they are missing. Don't correct them.
 
-Your map does not need to be polished.
+Watch.
 
-It is a tool for seeing the experience from another perspective.
+Notice:
 
-The HTML pages show us what the **visitor encounters**.
+- Where do they look first?
+- Where do they click?
+- Where do they hesitate?
+- What do they ignore?
+- What do they misunderstand?
+- What do they expect to happen?
+- Do they do something you did not anticipate?
+- When do you desperately want to help them?
 
-The map shows us the **system you designed**.
+What seems obvious to the person who designed an experience may not be obvious to the person encountering it.
+
+Testing gives us a chance to discover that difference.
+
+The goal is not to prove that your design works.
+
+The goal is to **find out what actually happens when someone uses it**.
 
 ---
 
@@ -135,26 +191,30 @@ Your notes might include:
 - Questions
 - Screenshots
 - Sketches
-- Navigation maps
+- Sitemaps
+- User flows
+- Wireframes
 - Code fragments
 - Links
 - Failed experiments
-- Things another student noticed
+- Something another student noticed
+- Something a user did that you did not expect
 - Something you want to try next
 
 You do not need to answer every prompt.
 
 ### This Week
 
-**How did linking pages together change the way you thought about your website?**
+**How did thinking about someone else's path through the website change the way you designed it?**
 
-**Where did you make a decision about what another person would see, understand, or do next?**
+**What happened when someone else encountered your experience without your help?**
 
 You might also consider:
 
 - When did a link become more than navigation?
 - What did you discover by drawing the experience as a map?
-- Where might a visitor become confused?
+- Where did a visitor become confused?
+- What seemed obvious to you but not to them?
 - Did someone use your experience differently than you expected?
 - What do you notice about navigation on other websites now that you have designed your own?
 
@@ -162,7 +222,57 @@ You might also consider:
 
 # Homework
 
-## 1. Continue Your Multi-Page Experience
+## 1. Set Up Your Development Environment
+
+Until now, we have been able to experiment with HTML directly in the browser. As our websites grow into multiple pages and files, we need a place to organize and develop them on our own computers.
+
+Install:
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [GitHub Desktop](https://desktop.github.com/)
+
+### Visual Studio Code
+
+Visual Studio Code (VS Code) will be our main code editor for working with HTML, CSS, and JavaScript files.
+
+Install VS Code and open it at least once.
+
+### GitHub Desktop
+
+GitHub Desktop connects the files on your computer with your repositories on GitHub without requiring you to use Git from the command line.
+
+Install GitHub Desktop and sign in with your GitHub account.
+
+Then:
+
+1. Clone your course repository to your computer using GitHub Desktop.
+2. Open the repository folder in Visual Studio Code.
+3. Create a folder for this week's work:
+
+       week-02
+
+4. Inside that folder, create your HTML files. For example:
+
+       index.html
+       page2.html
+       page3.html
+
+5. Open `index.html` in your browser and make sure the links between your pages work.
+6. Make a change to your project in Visual Studio Code.
+7. Commit your changes using GitHub Desktop.
+8. Push your changes to GitHub.
+
+Don't worry about memorizing this workflow yet. We will use it repeatedly throughout the semester.
+
+Begin thinking about the relationship:
+
+**GitHub repository ↔ files on your computer ↔ VS Code ↔ browser**
+
+You write and organize your files in VS Code, experience and test them in the browser, and use GitHub Desktop to keep your local work connected to GitHub.
+
+---
+
+## 2. Continue Your Multi-Page Experience
 
 Continue developing the experience you began in class.
 
@@ -179,49 +289,46 @@ Pay particular attention to:
 
 Do not worry about visual polish yet.
 
-Next week, CSS will give us a new set of tools for shaping attention through typography, color, spacing, and visual form.
+Next week, **CSS** will give us a new set of tools for shaping attention through typography, color, spacing, layout, and visual form.
 
 ---
 
-## 2. Test It on Someone
+## 3. Test It on Someone
 
-Give your experience to another person.
+Give your experience to someone who has not been working on it with you.
 
 Try not to explain how to use it.
 
-Watch what they do.
+Watch what happens.
 
-Notice:
+Record at least one thing that:
 
-- Where do they click first?
-- Do they understand where they can go?
-- Do they hesitate?
-- Do they do something you did not expect?
-- Do they miss something you thought was obvious?
+- Surprised you
+- Confused them
+- They did differently than you expected
+- You wanted to explain or correct
 
 You do not need to fix everything immediately.
 
 First, **notice what happened**.
 
-Record something from the experience in your Field Notes.
-
 ---
 
-## 3. Field Notes
+## 4. Field Notes
 
 Add your **Week 02 Field Notes** wherever you are keeping your Field Notes.
 
-Include a link to them from our class Field Notes page if you have not already done so.
+Make sure your name and Field Notes link are included on our shared class Field Notes page.
 
-Your Field Notes can include your navigation map, observations from testing, screenshots, questions, code, discoveries, or failed experiments.
+Your notes can include your sitemap, user flow, wireframe, observations from testing, screenshots, questions, code, discoveries, or failed experiments.
 
 ---
 
-## 4. Bring Something Back
+## 5. Bring Something Back
 
-As you move through the web this week, notice navigation.
+As you move through the web this week, pay attention to **navigation**.
 
-Find **one example of navigation that does something interesting**.
+Find one example of navigation that does something interesting.
 
 It might be:
 
@@ -242,10 +349,16 @@ Bring the link next week and be prepared to show us what you noticed.
 
 Before next class:
 
+- [ ] Create a sitemap for your experience
+- [ ] Create at least one user flow
+- [ ] Make a wireframe for at least one page
 - [ ] Create at least three connected HTML pages
-- [ ] Create a navigation map of the experience
 - [ ] Test the experience on another person
 - [ ] Record what you noticed during testing
+- [ ] Install Visual Studio Code
+- [ ] Install and connect GitHub Desktop
+- [ ] Clone your course repository locally
+- [ ] Make, commit, and push a change
 - [ ] Add your Week 02 Field Notes
 - [ ] Make sure the class page links to your Field Notes
 - [ ] Find one interesting example of navigation on the web
