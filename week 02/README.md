@@ -218,6 +218,8 @@ You might also consider:
 - Did someone use your experience differently than you expected?
 - What do you notice about navigation on other websites now that you have designed your own?
 
+Add a link to your field notes in the [wiki page for week 2](https://github.com/lenincompres/f26-ima-few/wiki/Week-2-%E2%80%90-Field-Notes).
+
 ---
 
 # Homework
@@ -318,7 +320,7 @@ First, **notice what happened**.
 
 Add your **Week 02 Field Notes** wherever you are keeping your Field Notes.
 
-Make sure your name and Field Notes link are included on our shared class Field Notes page.
+Make sure your name and Field Notes link are included on our shared class Field Notes page. Add a link to your field notes in the [wiki page for week 2](https://github.com/lenincompres/f26-ima-few/wiki/Week-2-%E2%80%90-Field-Notes).
 
 Your notes can include your sitemap, user flow, wireframe, observations from testing, screenshots, questions, code, discoveries, or failed experiments.
 
