@@ -1,4 +1,4 @@
-# Week 02 — Designing the Experience
+# Week 02 — Paths, Sequence, and Revelation
 
 ## Question
 
