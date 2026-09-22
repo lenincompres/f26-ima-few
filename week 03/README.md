@@ -463,19 +463,42 @@ Use an external stylesheet and experiment intentionally with:
 
 ---
 
-## 2. Continue Your Development Workflow
+## 2. Get Your Work onto GitHub
 
-Continue working locally with:
+You should now have **Visual Studio Code** and **GitHub Desktop** installed.
+
+Your challenge this week is to figure out how to use them together.
+
+Find a tutorial, documentation, video, classmate, or other resource that helps you learn how to:
+
+1. **Clone your GitHub repository** to your computer using GitHub Desktop.
+2. Open that repository in **Visual Studio Code**.
+3. Create a folder called `week-03`.
+4. Put your HTML and CSS exercise inside that folder.
+5. Open your HTML file in a browser and make sure it works.
+6. Use GitHub Desktop to **commit** your changes.
+7. **Push** your changes to GitHub.
+8. Visit your repository on GitHub and confirm that your `week-03` folder and files are there.
+
+By next week, you should have experienced this relationship:
 
 **GitHub repository ↔ files on your computer ↔ VS Code ↔ browser**
 
-Practice the cycle:
+And this basic cycle:
 
-**edit → save → browser → inspect → revise → commit → push**
+**edit → save → browser → revise → commit → push**
 
-You do not need to memorize every part yet.
+You do not need to memorize the process yet.
 
-Repetition will make the workflow familiar.
+Part of the assignment is discovering how it works.
+
+### In Your Field Notes
+
+Tell us briefly:
+
+- What resource helped you figure it out?
+- Where, if anywhere, did you get stuck?
+- What did you discover about how GitHub Desktop, VS Code, and your browser work together?
 
 ---
 
