@@ -469,7 +469,7 @@ You should now have **Visual Studio Code** and **GitHub Desktop** installed.
 
 Your challenge this week is to figure out how to use them together.
 
-Find a tutorial, documentation, video, classmate, or other resource that helps you learn how to:
+Find a tutorial, documentation, video, classmate, [coding lab](https://codinglab.itp.io/), or other resource that helps you learn how to:
 
 1. **Clone your GitHub repository** to your computer using GitHub Desktop.
 2. Open that repository in **Visual Studio Code**.
