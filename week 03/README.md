@@ -219,6 +219,11 @@ letter-spacing
 margin
 padding
 border
+font-family
+```
+You may add google fonts to you HEAD tag.
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 ```
 
 You do not need to use everything.
