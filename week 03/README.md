@@ -40,6 +40,9 @@ This week, we will use CSS as a **visual language**.
 
 ## Resources
 
+### Webdesign
+- [Slides](https://docs.google.com/presentation/d/19dB_qW3_2Yd2VRisr23k1FAjlCdltZ1Fxw0sR6s-GfU/edit?usp=sharing)
+
 ### CSS
 
 - [CSS Tutorial — W3Schools](https://www.w3schools.com/css/)
