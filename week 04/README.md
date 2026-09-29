@@ -398,6 +398,8 @@ grid-template-columns: 2fr 1fr;
 
 creates two columns where the first receives twice as much available space as the second.
 
+Similar to Flexbo Froggy, youcan visit **[CSS Grid Garden](https://cssgridgarden.com/)**
+
 ---
 
 ## Flexbox or Grid?
