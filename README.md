@@ -1,4 +1,4 @@
-# Front-End Web: Explorations in Storytelling
+# Front-End Web: Explorations in Storytelling...
 
 ## Course Description and Purpose
 Front-end web development is both a technical practice and an expressive medium. The browser can do more than display information or contain an application: it can reveal, respond, remember, surprise, persuade, and tell stories through structure, image, sound, movement, interaction, data, and participation.
