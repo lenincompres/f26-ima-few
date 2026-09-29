@@ -152,7 +152,7 @@ Instead of giving every child a position, we can often give the **container inst
 
 # Exercise 1 — Arrange Without the Answer
 
-You will receive a (simple page)[https://github.com/lenincompres/f26-ima-few/tree/main/week%2004/exercise%201] containing several elements.
+You will receive a [simple page](https://github.com/lenincompres/f26-ima-few/tree/main/week%2004/exercise%201) containing several elements.
 
 Your challenge is to change their spatial relationship.
 
