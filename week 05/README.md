@@ -42,12 +42,13 @@ We will work with:
 
 - Flexible layouts
 - Relative and constrained dimensions
-- Media queries
+- CSS Media queries
 - Breakpoints
 - Responsive design
-- Pseudo-classes such as `:hover`
-- Transitions
-- Transforms
+- CSS Pseudo-classes such as `:hover`
+- CSS Pseudo-element such as `::before`
+- CSS Transitions
+- CSS Transforms
 - CSS animation
 - Reduced motion
 
