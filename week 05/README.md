@@ -795,7 +795,7 @@ Think back across the course:
 
 **How do relationships in space change how we understand an experience?**
 
-### Week 05 — A Web That Adapts
+### Week 05 — A Web That Responds
 
 **How can a website respond to changing conditions?**
 
