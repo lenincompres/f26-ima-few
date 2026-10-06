@@ -1,4 +1,4 @@
-# Week 05 — A Web That Adapts
+# Week 05 — A Web That Responds
 
 ## Question
 
