@@ -65,7 +65,7 @@ You do not need to explain every decision in equal detail.
 
 Show us the decisions that matter most.
 
-Make sure your presentation is accessible through a link in our shared [Midterm Design Studio](https://github.com/lenincompres/f26-ima-few/wiki).
+Make sure your presentation is accessible through a link in our shared [Midterm Design Studio - Week 05 Field Notes](https://github.com/lenincompres/f26-ima-few/wiki/Week-5-%E2%80%90-Field-Notes).
 
 ---
 
