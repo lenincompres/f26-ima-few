@@ -1,4 +1,4 @@
-# Week 06 — Midterm Encounters & Introduction to Code
+# Week 07 — Midterm Encounters & Introduction to Code
 
 ## Questions
 
