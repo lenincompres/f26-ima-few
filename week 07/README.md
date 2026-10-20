@@ -615,6 +615,18 @@ You do not need to make a polished project.
 
 This is an experiment.
 
+### Tutorials & Resources
+
+Explore these as needed while experimenting:
+
+- [W3Schools — JavaScript Tutorial](https://www.w3schools.com/js/) — Quick examples to try and modify.
+- [MDN — JavaScript Basics](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity) — An introduction to adding interactivity to webpages.
+- [MDN — Manipulating Documents](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting) — Finding and changing HTML elements with JavaScript.
+
+Save your experiment in your course repository.
+
+You do not need to make a polished project. This is an experiment.
+
 ## 3. Optional Reading
 
 Continue exploring:
