@@ -1,5 +1,15 @@
 # Week 10 — Stories from Elsewhere
 
+## Week 09 Follow-Up — Trade Without Explanation
+Students exchange their interactive pages with classmates and explore them without instructions.
+
+Ask them to observe:
+- What does the visitor try first?
+- What do they recognize as interactive?
+- What surprises or confuses them?
+- Does the page communicate the consequences of their actions?
+- What would they change after watching someone use it?
+
 ## Question
 
 **What happens when a story depends on information arriving from somewhere else?**
