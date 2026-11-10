@@ -1,0 +1,73 @@
+body {
+  background-color: tan;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#domino-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.domino {
+  font-size: 15px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 0.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 2px  black;
+  overflow: hidden;
+  transition: 0.1s ease;
+}
+
+.domino.flipped {
+  background-color: slategray;
+  transform: rotateY(180deg);
+  box-shadow: -2px 2px 2px  black;
+}
+
+.domino-face {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 3.2em;
+  height: 3.2em;
+  padding: 0.1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.domino-face.over {
+  background-color: gold;  
+}
+
+.domino.flipped .domino-face {
+  border: none;
+}
+
+.domino .pip {
+  width: 0.6em;
+  height: 0.6em;
+  margin: 0.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dotted transparent;
+}
+
+.domino.flipped .pip {
+  display: none;
+}
+
+.pip.dot {
+  background-color: black;
+  border-radius: 50%;
+}
