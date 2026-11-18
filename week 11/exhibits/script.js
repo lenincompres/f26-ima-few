@@ -13,9 +13,9 @@ async function loadExhibitData() {
   const exhibits = [];
 
   lines.forEach(line => {
-    const values = line.split(",");
     const exhibitObj = {};
     
+    const values = line.split(",");
     propNames.forEach((propName, index) => {
       exhibitObj[propName] = values[index];
     });
@@ -25,13 +25,11 @@ async function loadExhibitData() {
   
   console.log(exhibits);
 
-
   const chart = document.querySelector("#chart");
 
   const maxVisitors = Math.max(
     ...exhibits.map(exhibit => parseInt(exhibit.visitors))
   );
-
 
   const totalVisitors = exhibits.reduce(
     (sum, exhibit) => sum + parseInt(exhibit.visitors),
@@ -49,7 +47,7 @@ async function loadExhibitData() {
     const bar = document.createElement("div");
     bar.className = "bar";
 
-    const width = exhibit.visitors / totalVisitors * 100;
+    const width = parseInt(exhibit.visitors) / totalVisitors * 100;
 
     bar.style.width = `${width}%`;
 
