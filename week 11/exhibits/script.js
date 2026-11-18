@@ -1,42 +1,66 @@
-const exhibits = [
-  { name: "The Mirror Room", visitors: 120, minutes: 12, rating: 4.8 },
-  { name: "The Forgotten Garden", visitors: 80, minutes: 25, rating: 4.9 },
-  { name: "The Clock Tower", visitors: 200, minutes: 5, rating: 3.2 },
-  { name: "The Whispering Hall", visitors: 60, minutes: 40, rating: 4.7 },
-  { name: "The Empty Gallery", visitors: 150, minutes: 2, rating: 2.1 }
-];
-
-const chart = document.querySelector("#chart");
-
-const maxVisitors = Math.max(
-  ...exhibits.map(exhibit => exhibit.visitors)
-);
 
 
-const totalVisitors = exhibits.reduce(
-  (sum, exhibit) => sum + exhibit.visitors,
-  0
-);
 
-exhibits.forEach(exhibit => {
+async function loadExhibitData() {
 
-  const row = document.createElement("div");
-  row.className = "chart-row";
+  const response = await fetch("exhibits_data.csv");
+  const text = await response.text();
 
-  const label = document.createElement("span");
-  label.textContent = exhibit.name;
+  const lines = text.split("\n"); // split the text into lines
 
-  const bar = document.createElement("div");
-  bar.className = "bar";
+  const propNames = lines.shift().split(","); // shift returns the first line and removes it from the array
 
-  const width = exhibit.visitors / totalVisitors * 100;
+  const exhibits = [];
 
-  bar.style.width = `${width}%`;
+  lines.forEach(line => {
+    const values = line.split(",");
+    const exhibitObj = {};
+    
+    propNames.forEach((propName, index) => {
+      exhibitObj[propName] = values[index];
+    });
 
-  const value = document.createElement("span");
-  value.textContent = exhibit.visitors;
+    exhibits.push(exhibitObj);
+  });
+  
+  console.log(exhibits);
 
-  row.append(label, bar, value);
-  chart.append(row);
 
-});
+  const chart = document.querySelector("#chart");
+
+  const maxVisitors = Math.max(
+    ...exhibits.map(exhibit => parseInt(exhibit.visitors))
+  );
+
+
+  const totalVisitors = exhibits.reduce(
+    (sum, exhibit) => sum + parseInt(exhibit.visitors),
+    0
+  );
+
+  exhibits.forEach(exhibit => {
+
+    const row = document.createElement("div");
+    row.className = "chart-row";
+
+    const label = document.createElement("span");
+    label.textContent = exhibit.name;
+
+    const bar = document.createElement("div");
+    bar.className = "bar";
+
+    const width = exhibit.visitors / totalVisitors * 100;
+
+    bar.style.width = `${width}%`;
+
+    const value = document.createElement("span");
+    value.textContent = exhibit.visitors;
+
+    row.append(label, bar, value);
+    chart.append(row);
+
+  });
+
+}
+
+loadExhibitData();
