@@ -2,103 +2,195 @@
 
 ## Central Question
 
-**How can repeated structures, entities, and rules create a coherent world or experience?**
+**How can we build complex experiences from simple, reusable parts?**
 
-Over the past few weeks, we have learned to organize information, respond to visitors, communicate with external systems, and transform data into experiences.
+Throughout the semester, we have learned to structure information, design interfaces, respond to visitors, communicate with external systems, and transform data into experiences.
 
-As our projects grow, we begin to encounter another challenge.
+As our projects grow, we encounter another challenge: organizing complexity.
 
-How do we organize the code itself?
+How can we reuse something we have already created?
 
-What happens when we have several characters that behave similarly but have different personalities?
+How can different entities share behavior while maintaining their individuality?
 
-What if we have many interactive objects that follow the same rules?
+Can we extend the vocabulary of HTML itself?
 
-What if different parts of our website need to communicate with one another?
-
-This week, we explore ways to organize complexity without losing the individuality of the things we create.
+Today, we explore how smaller structures can become the building blocks of larger experiences.
 
 ---
 
 ## What We'll Explore
 
-- Objects with properties and methods
-- Classes and constructors
-- Instances
-- The `this` keyword
-- Encapsulation
-- Reusable interface components
+- JavaScript modules
+- Importing and exporting code
+- Objects, properties, and methods
+- Classes, constructors, and instances
+- Inheritance and specialization
+- Creating and manipulating HTML elements
+- Encapsulation and separation of concerns
+- Custom HTML elements
 - HTML templates
-- Composition and relationships between objects
-- Organizing JavaScript projects
-- Accessible interactive components
+- Accessible components
+- Composition and systems
 - Final-project design development
 
 ---
 
-# 1. An Encounter — A Cast of Characters
+# 1. Organizing Our Code — JavaScript Modules
 
-Imagine a small fictional town inhabited by three characters.
+Until now, many of our projects have followed a familiar structure:
 
-Each character has:
+```text
+project/
+├── index.html
+├── style.css
+└── script.js
+```
 
-- A name
-- A personality
-- A greeting
-- A level of curiosity
-- A memory of how many times someone has visited
+But what happens when our JavaScript file grows to hundreds of lines?
 
-Although the characters are different, they share a structure.
+What if we write a useful function that we want to use in several projects?
 
-How might we represent them in JavaScript?
+We can organize JavaScript into separate files, each with its own responsibilities.
 
-We could begin with objects:
+Consider this structure:
+
+```text
+project/
+├── index.html
+├── style.css
+├── script.js
+└── utilities.js
+```
+
+In `utilities.js`, let's define a function that selects a random item from an array.
+
+```js
+export function randomItem(array) {
+  const index = Math.floor(Math.random() * array.length);
+  return array[index];
+}
+```
+
+In `script.js`, we can import that function.
+
+```js
+import { randomItem } from "./utilities.js";
+
+const greetings = [
+  "Welcome, traveler.",
+  "Have we met before?",
+  "There is something you should know."
+];
+
+console.log(randomItem(greetings));
+```
+
+To use JavaScript modules, we need to identify our main script as a module in our HTML.
+
+```html
+<script type="module" src="script.js"></script>
+```
+
+A module script is deferred by default, so we don't need to add the `defer` attribute.
+
+Use a local development server when working with modules.
+
+## Importing and Exporting
+
+The `export` keyword makes a definition available to other modules.
+
+The `import` keyword brings an exported definition into another module.
+
+We can export multiple things from the same file.
+
+```js
+export function randomItem(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+export function randomNumber(min, max) {
+  return min + Math.random() * (max - min);
+}
+
+export const colors = ["red", "green", "blue"];
+```
+
+And import only what we need.
+
+```js
+import { randomItem, colors } from "./utilities.js";
+
+document.body.style.backgroundColor = randomItem(colors);
+```
+
+We can export functions, variables, objects, and classes.
+
+## Why Modules?
+
+Modules allow us to:
+
+- Organize code according to its responsibilities.
+- Reuse code across different files and projects.
+- Work on one part of a project without navigating through everything else.
+- Share useful tools with other developers.
+- Avoid unnecessarily placing variables in the global scope.
+
+A module is not necessarily an entire application.
+
+It can be a small collection of tools that contributes to a larger experience.
+
+---
+
+## Experiment — A Shared Toolbox
+
+Create a `utilities.js` module containing two or three functions.
+
+These could help you:
+
+- Select a random item.
+- Generate a random number.
+- Format a string.
+- Perform a calculation.
+- Transform a value.
+- Choose a color.
+
+Import and use these functions in your main script.
+
+Exchange a useful function with another student.
+
+Can you use their function without needing to understand their entire project?
+
+What makes a function easy to reuse?
+
+---
+
+# 2. Objects with Behavior
+
+We have already used objects to organize information.
 
 ```js
 const luna = {
   name: "Luna",
-  greeting: "Have you seen the moon tonight?",
   curiosity: 8,
-  visits: 0
-};
-
-const sol = {
-  name: "Sol",
-  greeting: "There is something I need to tell you.",
-  curiosity: 3,
+  greeting: "Have you seen the moon tonight?",
   visits: 0
 };
 ```
 
-This works well.
+But objects can contain more than information.
 
-But what if we want twenty characters?
-
-What if every character needs to respond to visitors?
-
-What if every character needs to remember something?
-
-What is different about each character?
-
-What is shared?
-
----
-
-# 2. Objects Can Behave
-
-An object can contain more than information.
-
-It can also contain functions.
+They can also contain functions.
 
 ```js
 const luna = {
   name: "Luna",
+  curiosity: 8,
+  greeting: "Have you seen the moon tonight?",
   visits: 0,
 
   greet() {
     this.visits++;
-
-    return `Welcome. You have visited me ${this.visits} times.`;
+    return `${this.name}: ${this.greeting}`;
   }
 };
 ```
@@ -108,7 +200,7 @@ Try:
 ```js
 console.log(luna.greet());
 console.log(luna.greet());
-console.log(luna.greet());
+console.log(luna.visits);
 ```
 
 What changes each time?
@@ -125,24 +217,37 @@ In this example, `this` refers to the object on which the method is called.
 this.visits++;
 ```
 
-Changes the number of visits belonging to that particular character.
+Changes the number of visits belonging to Luna.
 
-We now have an object that contains both information and behavior.
+The object now contains both information and behavior.
+
+This allows us to think about an entity as something that knows things and can do things.
 
 ---
 
-# 3. From Objects to Classes
+# 3. Classes and Instances
 
-Imagine writing the same greeting method for every character.
+Imagine a fictional town inhabited by several characters.
 
-We would repeat ourselves many times.
+Each character has:
 
-Instead, we could define a shared structure using a **class**.
+- A name
+- A greeting
+- A level of curiosity
+- A memory of previous encounters
+
+Although the characters are different, they share a structure.
+
+We could create each character as a separate object, repeating the same properties and methods.
+
+Or we could define that shared structure once using a **class**.
+
+Let's create a new file called `Character.js`.
 
 ```js
-class Character {
+export class Character {
 
-  constructor(name, greeting, curiosity) {
+  constructor(name, greeting, curiosity = 5) {
 
     this.name = name;
     this.greeting = greeting;
@@ -159,12 +264,24 @@ class Character {
 
   }
 
+  respond() {
+
+    if (this.curiosity > 5) {
+      return "Tell me something strange.";
+    }
+
+    return "I have nothing more to say.";
+
+  }
+
 }
 ```
 
-We can now create characters from that class.
+In `script.js`, we can import the class.
 
 ```js
+import { Character } from "./Character.js";
+
 const luna = new Character(
   "Luna",
   "Have you seen the moon tonight?",
@@ -183,23 +300,22 @@ Try:
 ```js
 console.log(luna.greet());
 console.log(sol.greet());
-```
 
-Then:
+console.log(luna.respond());
+console.log(sol.respond());
 
-```js
 console.log(luna.visits);
 console.log(sol.visits);
 ```
 
-Each character follows the same structure, but each maintains its own information.
+Each character follows the same structure but maintains its own information.
 
 ## Vocabulary
 
 | Concept | Meaning |
 |---|---|
 | Class | A shared definition of properties and behavior |
-| Constructor | A method that initializes a new instance |
+| Constructor | A special method that initializes a new instance |
 | Instance | An individual object created from a class |
 | Property | Information associated with an object |
 | Method | Behavior associated with an object |
@@ -210,102 +326,9 @@ A class is not a character.
 
 It describes how characters can be created and behave.
 
----
+## Collections of Instances
 
-# 4. Shared Rules, Different Outcomes
-
-Let's give our characters another method.
-
-Add this inside the `Character` class:
-
-```js
-respond() {
-
-  this.visits++;
-
-  if (this.visits > 3) {
-    return `${this.name}: You keep coming back.`;
-  }
-
-  if (this.curiosity > 5) {
-    return `${this.name}: Tell me something strange.`;
-  }
-
-  return `${this.name}: I have nothing more to say.`;
-
-}
-```
-
-Try calling:
-
-```js
-luna.respond();
-sol.respond();
-```
-
-Repeat the interactions.
-
-What happens?
-
-The characters follow the same rules, but their responses depend on their individual properties and previous encounters.
-
-Change the characters' curiosity values.
-
-Change the conditions.
-
-Invent another property:
-
-- Trust
-- Energy
-- Patience
-- Courage
-- Happiness
-- Knowledge
-
-What kinds of behavior might emerge from these properties?
-
-**How much individuality can emerge from a shared set of rules?**
-
----
-
-# Exercise 1 — A Small Cast
-
-Create a class representing a kind of entity.
-
-It could be:
-
-- A character
-- A creature
-- A fictional object
-- A room
-- A planet
-- A musical instrument
-- A memory
-- A mysterious machine
-
-Give your class at least three properties and two methods.
-
-Create three or more instances.
-
-Experiment with giving them different properties while allowing them to follow the same rules.
-
-Observe their behavior in the console.
-
-Consider:
-
-- What makes these entities recognizable as members of the same group?
-- What makes each one different?
-- What happens when their properties change?
-- Which behaviors belong to all instances?
-- Which differences deserve their own rules?
-
----
-
-# 5. A Collection of Instances
-
-Instances are objects.
-
-This means we can organize them using arrays, just as we did in previous classes.
+Instances are objects, so we can organize them into arrays.
 
 ```js
 const characters = [
@@ -315,7 +338,7 @@ const characters = [
 ];
 ```
 
-We can iterate through them:
+We can iterate through them.
 
 ```js
 characters.forEach(character => {
@@ -323,7 +346,7 @@ characters.forEach(character => {
 });
 ```
 
-Or filter them:
+Filter them.
 
 ```js
 const curiousCharacters = characters.filter(
@@ -331,16 +354,14 @@ const curiousCharacters = characters.filter(
 );
 ```
 
-Or choose one randomly:
+Or use the function from our utilities module.
 
 ```js
-const index = Math.floor(
-  Math.random() * characters.length
-);
+import { randomItem } from "./utilities.js";
 
-const character = characters[index];
+const character = randomItem(characters);
 
-console.log(character.respond());
+console.log(character.greet());
 ```
 
 Notice how the techniques from our previous classes remain useful.
@@ -351,97 +372,687 @@ They give us another way to organize them.
 
 ---
 
-# 6. From Characters to Components
+# 4. Extending Classes — Inheritance
 
-Now imagine that every character needs to appear on a webpage.
+What if some of our characters are explorers and others are guardians?
 
-Each character might have:
+They are all characters, but they may have different abilities or behaviors.
+
+Instead of defining entirely new classes from scratch, we can extend an existing class.
+
+In `Explorer.js`:
+
+```js
+import { Character } from "./Character.js";
+
+export class Explorer extends Character {
+
+  constructor(name, greeting, curiosity, destination) {
+
+    super(name, greeting, curiosity);
+
+    this.destination = destination;
+
+  }
+
+  explore() {
+
+    return `${this.name} travels to ${this.destination}.`;
+
+  }
+
+}
+```
+
+In `script.js`:
+
+```js
+import { Explorer } from "./Explorer.js";
+
+const terra = new Explorer(
+  "Terra",
+  "There is much to discover.",
+  9,
+  "The Forgotten Garden"
+);
+
+console.log(terra.greet());
+console.log(terra.explore());
+```
+
+Although we never defined `greet()` inside the `Explorer` class, explorers can greet because they inherit that method from `Character`.
+
+The `extends` keyword establishes this relationship.
+
+The `super()` call invokes the constructor of the parent class.
+
+## Specializing Behavior
+
+A subclass can also redefine an inherited method.
+
+In `Guardian.js`:
+
+```js
+import { Character } from "./Character.js";
+
+export class Guardian extends Character {
+
+  respond() {
+
+    return "You may not pass without permission.";
+
+  }
+
+}
+```
+
+```js
+import { Guardian } from "./Guardian.js";
+
+const sol = new Guardian(
+  "Sol",
+  "Who goes there?",
+  3
+);
+
+console.log(sol.greet());
+console.log(sol.respond());
+```
+
+The guardian inherits the constructor and greeting behavior from `Character`, but defines its own response.
+
+Redefining an inherited method is called **overriding**.
+
+We can also extend an inherited method rather than completely replacing it.
+
+```js
+greet() {
+
+  return `${super.greet()} State your purpose.`;
+
+}
+```
+
+Here, `super.greet()` calls the original method from the parent class.
+
+## Inheritance
+
+Inheritance allows us to express relationships between types of entities.
+
+```text
+Character
+├── Explorer
+├── Guardian
+└── Merchant
+```
+
+Each specialized class can inherit shared properties and behavior while introducing its own.
+
+What belongs to every character?
+
+What belongs only to explorers?
+
+What belongs only to one particular instance?
+
+---
+
+# Exercise 1 — A Small World
+
+Create a class representing a kind of entity.
+
+It could be:
+
+- A character
+- A creature
+- A musical instrument
+- A fictional object
+- A vehicle
+- A planet
+- A mysterious machine
+
+Give your class properties and methods.
+
+Then create at least one subclass that extends it.
+
+Create several instances and experiment with their behavior in the console.
+
+Organize your classes into modules and import them into your main script.
+
+Consider:
+
+- What do all your entities have in common?
+- What makes each instance different?
+- What makes each subclass different?
+- Which behaviors should be inherited?
+- Which behaviors should be specialized?
+
+---
+
+# 5. Creating HTML with JavaScript
+
+So far, our characters exist as JavaScript objects.
+
+How can we give them a presence on the webpage?
+
+We have already used JavaScript to select and modify existing HTML elements.
+
+But JavaScript can also create new ones.
+
+```js
+const heading = document.createElement("h2");
+
+heading.textContent = "Luna";
+
+document.body.append(heading);
+```
+
+The `createElement()` method creates an HTML element.
+
+The element exists in JavaScript, but it does not appear on the page until we insert it into the document.
+
+We can create more elaborate structures.
+
+```js
+const card = document.createElement("article");
+card.classList.add("character");
+
+const heading = document.createElement("h2");
+heading.textContent = "Luna";
+
+const description = document.createElement("p");
+description.textContent = "A curious traveler.";
+
+const button = document.createElement("button");
+button.textContent = "Speak";
+
+card.append(heading, description, button);
+
+document.body.append(card);
+```
+
+The result is equivalent to writing:
+
+```html
+<article class="character">
+  <h2>Luna</h2>
+  <p>A curious traveler.</p>
+  <button>Speak</button>
+</article>
+```
+
+We can style these elements using CSS, just as we would any other HTML.
+
+```css
+.character {
+  padding: 1rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+}
+```
+
+## Manipulating Elements
+
+Once we have a reference to an HTML element, we can manipulate it.
+
+```js
+card.classList.add("active");
+
+card.classList.remove("active");
+
+card.classList.toggle("active");
+
+card.setAttribute("data-character", "luna");
+
+card.remove();
+```
+
+Some useful DOM methods and properties:
+
+| Method or Property | Purpose |
+|---|---|
+| `document.createElement()` | Creates an HTML element |
+| `append()` | Inserts content at the end of an element |
+| `prepend()` | Inserts content at the beginning |
+| `remove()` | Removes an element from the document |
+| `replaceChildren()` | Replaces an element's contents |
+| `textContent` | Reads or changes text |
+| `classList` | Manages CSS classes |
+| `setAttribute()` | Sets an HTML attribute |
+| `getAttribute()` | Reads an HTML attribute |
+| `addEventListener()` | Responds to events |
+
+HTML elements are themselves JavaScript objects, with properties and methods.
+
+---
+
+# 6. From Objects to Components
+
+Imagine that every character needs its own interface.
+
+Each interface might contain:
 
 - A heading
 - A description
 - A button
 - A space for responses
 
-These elements would have the same structure, but different content.
-
 A reusable part of an interface is often called a **component**.
 
-Components can be simple or complex:
+There are different ways to establish the relationship between an object and its visual representation.
 
-- Navigation menus
-- Cards
-- Dialogs
-- Character portraits
-- Search results
-- Interactive maps
-- Media players
+## Approach A — Separating the Object from Its Interface
 
-We don't need a framework to create them.
+We can keep our `Character` class independent of HTML and create a function that generates its interface.
 
-Let's begin with a function that creates a character card.
+In `components.js`:
 
 ```js
-function createCharacterCard(character) {
+export function createCharacterCard(character) {
 
   const card = document.createElement("article");
+  card.classList.add("character");
 
   const heading = document.createElement("h2");
   heading.textContent = character.name;
 
-  const response = document.createElement("p");
-  response.textContent = character.greeting;
-
   const button = document.createElement("button");
   button.textContent = `Speak to ${character.name}`;
 
+  const response = document.createElement("p");
+  response.setAttribute("aria-live", "polite");
+
   button.addEventListener("click", () => {
-
-    response.textContent = character.respond();
-
+    response.textContent = character.greet();
   });
 
-  card.append(heading, response, button);
+  card.append(heading, button, response);
 
   return card;
 
 }
 ```
 
-In our HTML:
-
-```html
-<h1>Meet the Characters</h1>
-
-<main id="characters"></main>
-```
-
-In our JavaScript:
+In `script.js`:
 
 ```js
-const container = document.querySelector("#characters");
+import { createCharacterCard } from "./components.js";
 
 characters.forEach(character => {
 
   const card = createCharacterCard(character);
 
-  container.append(card);
+  document.body.append(card);
 
 });
 ```
 
-Every character now has its own interface.
+Our character class does not need to know how it is being displayed.
 
-Yet we only wrote the instructions for creating that interface once.
+We could represent the same character through HTML, a canvas, a game, or a text-based experience.
 
-What happens if we add another character to the array?
+The function is responsible for creating the interface.
 
-What happens if we change the component's structure?
+The character is responsible for its information and behavior.
+
+This is an example of **separation of concerns**.
+
+## Approach B — An Object That Owns Its Interface
+
+Alternatively, an object can create and maintain its own HTML element.
+
+Let's extend our existing `Character` class.
+
+In `VisualCharacter.js`:
+
+```js
+import { Character } from "./Character.js";
+
+export class VisualCharacter extends Character {
+
+  constructor(name, greeting, curiosity) {
+
+    super(name, greeting, curiosity);
+
+    this.element = document.createElement("article");
+    this.element.classList.add("character");
+
+    const heading = document.createElement("h2");
+    heading.textContent = this.name;
+
+    const button = document.createElement("button");
+    button.textContent = `Speak to ${this.name}`;
+
+    this.response = document.createElement("p");
+    this.response.setAttribute("aria-live", "polite");
+
+    button.addEventListener("click", () => {
+      this.speak();
+    });
+
+    this.element.append(heading, button, this.response);
+
+  }
+
+  speak() {
+
+    this.response.textContent = this.greet();
+
+  }
+
+}
+```
+
+In `script.js`:
+
+```js
+import { VisualCharacter } from "./VisualCharacter.js";
+
+const luna = new VisualCharacter(
+  "Luna",
+  "Look at the sky.",
+  8
+);
+
+document.body.append(luna.element);
+```
+
+The object now maintains its own visual representation.
+
+We can also interact with it programmatically.
+
+```js
+luna.speak();
+
+luna.element.classList.add("active");
+
+luna.element.remove();
+```
+
+This is an example of **encapsulation**: grouping related information and behavior into a single unit.
+
+## Which Approach Should We Use?
+
+It depends on what we are creating.
+
+If a class represents an abstraction that could be useful in many different contexts, separating it from the interface may make it more reusable.
+
+If a class represents something inherently visual or interactive, managing its own HTML element may make it easier to work with.
+
+Neither approach is inherently better.
+
+Consider what responsibilities belong to the object and which belong elsewhere.
 
 ---
 
-# 7. HTML Templates
+# 7. Extending HTML Itself — Custom Elements
 
-Creating many HTML elements through JavaScript can become difficult to read.
+We have created objects that represent characters.
+
+We have created objects that own HTML elements.
+
+But could an object actually be an HTML element?
+
+HTML elements are instances of classes provided by the browser.
+
+One of these classes is `HTMLElement`.
+
+Just as we extended our own `Character` class, we can extend `HTMLElement`.
+
+In `CharacterElement.js`:
+
+```js
+export class CharacterElement extends HTMLElement {
+
+  connectedCallback() {
+
+    const name = this.getAttribute("name");
+    const greeting = this.getAttribute("greeting");
+
+    const heading = document.createElement("h2");
+    heading.textContent = name;
+
+    const button = document.createElement("button");
+    button.textContent = `Speak to ${name}`;
+
+    const response = document.createElement("p");
+    response.setAttribute("aria-live", "polite");
+
+    button.addEventListener("click", () => {
+      response.textContent = greeting;
+    });
+
+    this.replaceChildren(heading, button, response);
+
+  }
+
+}
+
+customElements.define("story-character", CharacterElement);
+```
+
+We can load this module directly from our HTML.
+
+```html
+<script type="module" src="CharacterElement.js"></script>
+```
+
+Or import it from our main JavaScript module.
+
+```js
+import "./CharacterElement.js";
+```
+
+This import executes the module, including the instruction that registers our custom element.
+
+Now we can write:
+
+```html
+<story-character
+  name="Luna"
+  greeting="Have you seen the moon tonight?"
+></story-character>
+
+<story-character
+  name="Sol"
+  greeting="There is something I need to tell you."
+></story-character>
+
+<story-character
+  name="Terra"
+  greeting="There is much to discover."
+></story-character>
+```
+
+We have created a new kind of HTML element.
+
+## Understanding the Code
+
+### `extends HTMLElement`
+
+Our class inherits the properties and methods of an HTML element.
+
+We don't need to create a separate `this.element` property.
+
+The object itself is the element.
+
+### `connectedCallback()`
+
+This is a lifecycle method provided by the Custom Elements API.
+
+The browser calls it when an instance of our custom element becomes connected to the document.
+
+It is a useful place to read attributes and construct the element's interface.
+
+Unlike a constructor, it may run more than once if the element is removed and reinserted.
+
+### `customElements.define()`
+
+```js
+customElements.define("story-character", CharacterElement);
+```
+
+Registers our class under a new HTML tag name.
+
+Custom element names must contain a hyphen.
+
+For example:
+
+```html
+<story-character></story-character>
+<magic-door></magic-door>
+<weather-card></weather-card>
+<sound-player></sound-player>
+<interactive-map></interactive-map>
+```
+
+## Styling Custom Elements
+
+Custom elements can be styled using ordinary CSS.
+
+```css
+story-character {
+  display: block;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+}
+
+story-character h2 {
+  margin-top: 0;
+}
+
+story-character button {
+  cursor: pointer;
+}
+```
+
+## Creating Custom Elements Programmatically
+
+We can also create instances using JavaScript.
+
+```js
+const luna = document.createElement("story-character");
+
+luna.setAttribute("name", "Luna");
+luna.setAttribute("greeting", "Look at the sky.");
+
+document.body.append(luna);
+```
+
+Or, once the class has been registered, instantiate it directly.
+
+```js
+import { CharacterElement } from "./CharacterElement.js";
+
+const luna = new CharacterElement();
+
+luna.setAttribute("name", "Luna");
+luna.setAttribute("greeting", "Look at the sky.");
+
+document.body.append(luna);
+```
+
+Our custom element can be created, selected, styled, and manipulated like other HTML elements.
+
+---
+
+# 8. Combining Models and Custom Elements
+
+Our custom element currently contains its own greeting behavior.
+
+But we already have a class that represents a character.
+
+Rather than repeating that logic, we could combine the two.
+
+In `CharacterElement.js`:
+
+```js
+import { Character } from "./Character.js";
+
+export class CharacterElement extends HTMLElement {
+
+  connectedCallback() {
+
+    const name = this.getAttribute("name");
+    const greeting = this.getAttribute("greeting");
+    const curiosity = Number(
+      this.getAttribute("curiosity") ?? 5
+    );
+
+    this.character ??= new Character(
+      name,
+      greeting,
+      curiosity
+    );
+
+    const heading = document.createElement("h2");
+    heading.textContent = this.character.name;
+
+    const button = document.createElement("button");
+    button.textContent = `Speak to ${this.character.name}`;
+
+    this.response = document.createElement("p");
+    this.response.setAttribute("aria-live", "polite");
+
+    button.addEventListener("click", () => {
+      this.speak();
+    });
+
+    this.replaceChildren(heading, button, this.response);
+
+  }
+
+  speak() {
+
+    this.response.textContent = this.character.greet();
+
+  }
+
+}
+
+customElements.define("story-character", CharacterElement);
+```
+
+Notice the relationship:
+
+```text
+CharacterElement
+├── Character instance
+├── Heading
+├── Button
+└── Response paragraph
+```
+
+The custom element contains a character object.
+
+The character manages its own information and behavior.
+
+The custom element manages its interface.
+
+This is an example of **composition**: building a larger entity by combining smaller entities.
+
+## Inheritance and Composition
+
+Inheritance describes what something **is**.
+
+Composition describes what something **has**.
+
+| Relationship | Example |
+|---|---|
+| Inheritance | An Explorer is a Character |
+| Inheritance | A CharacterElement is an HTMLElement |
+| Composition | A CharacterElement has a Character |
+| Composition | A CharacterElement has a Button |
+| Composition | A Town has a collection of Characters |
+
+Both approaches allow us to organize complexity.
+
+---
+
+# 9. HTML Templates
+
+As our components grow, creating every HTML element individually through JavaScript can become difficult to read.
 
 Sometimes it is easier to describe the structure directly in HTML and let JavaScript populate it.
 
@@ -454,113 +1065,113 @@ HTML provides a `<template>` element for this purpose.
 
     <h2></h2>
 
-    <p class="response" aria-live="polite"></p>
-
     <button type="button"></button>
+
+    <p class="response" aria-live="polite"></p>
 
   </article>
 
 </template>
-
-<main id="characters"></main>
 ```
 
-The content of a template is not displayed immediately.
+The contents of a template are not displayed immediately.
 
-Instead, we can copy and populate it when we need it.
+Instead, we can copy and populate them whenever we need them.
 
-```js
-function createCharacterCard(character) {
-
-  const template = document.querySelector(
-    "#character-template"
-  );
-
-  const card = template.content
-    .firstElementChild
-    .cloneNode(true);
-
-  const heading = card.querySelector("h2");
-  const response = card.querySelector(".response");
-  const button = card.querySelector("button");
-
-  heading.textContent = character.name;
-  response.textContent = character.greeting;
-
-  button.textContent = `Speak to ${character.name}`;
-
-  button.addEventListener("click", () => {
-
-    response.textContent = character.respond();
-
-  });
-
-  return card;
-
-}
-```
-
-We can use the same loop as before:
+Inside our `CharacterElement` class, we could replace the element-creation code with:
 
 ```js
-characters.forEach(character => {
+const template = document.querySelector(
+  "#character-template"
+);
 
-  container.append(
-    createCharacterCard(character)
-  );
+const content = template.content.cloneNode(true);
 
+const heading = content.querySelector("h2");
+const button = content.querySelector("button");
+
+this.response = content.querySelector(".response");
+
+heading.textContent = this.character.name;
+
+button.textContent = `Speak to ${this.character.name}`;
+
+button.addEventListener("click", () => {
+  this.speak();
 });
+
+this.replaceChildren(content);
 ```
 
-Notice that we are separating responsibilities.
+The structure of our component is now defined in HTML.
 
-- HTML describes the component's structure.
-- CSS describes its appearance.
-- JavaScript describes its behavior.
-- The character object provides its information and rules.
+Its appearance is defined in CSS.
 
-This organization makes it easier to change one aspect without rewriting everything else.
+Its behavior is defined in JavaScript.
+
+Its underlying information is managed by a character object.
+
+This is another way of separating responsibilities.
+
+Templates are not required for custom elements, and custom elements are not required for templates.
+
+They are independent tools that can work together.
 
 ---
 
-# Exercise 2 — Give Your Entities an Interface
+# Exercise 2 — Invent an HTML Element
 
-Return to the class you created in Exercise 1.
+Return to the entities you created in Exercise 1.
 
-Create a webpage where each instance has its own interactive component.
+Give them a visual representation by creating a custom HTML element.
 
-You may use:
+You might invent:
 
-- A function that creates DOM elements
-- An HTML template
-- A combination of both
+- `<story-character>`
+- `<magic-object>`
+- `<memory-card>`
+- `<fictional-creature>`
+- `<planet-view>`
+- `<sound-machine>`
+- `<mystery-door>`
 
-Each component should communicate something about the individual entity.
+Your custom element should:
 
-Give the visitor a way to interact with it.
+- Extend `HTMLElement`.
+- Be registered using `customElements.define()`.
+- Accept at least one custom attribute.
+- Create or populate its own HTML structure.
+- Respond to at least one visitor interaction.
+- Be reusable across multiple instances.
 
-Observe:
+Create at least three instances in your HTML.
 
-- Does each entity respond independently?
-- Can visitors understand what they can do?
+Experiment with giving them different attributes.
+
+Style them using CSS.
+
+Consider:
+
 - What happens when you add another instance?
-- Can you change the design of every component by editing a single place?
+- Can you change every instance by editing a single class?
+- Does each instance maintain its own state?
+- Could someone use your custom element without understanding its internal JavaScript?
 
-Try creating an experience with five, ten, or twenty instances.
+Exchange your custom element with another student.
 
-When does repetition become interesting?
-
-When does it become overwhelming?
+Can they use it simply by importing your module and writing the appropriate HTML?
 
 ---
 
-# 8. Accessibility and Reusable Components
+# 10. Accessibility and Reusable Components
 
-Reusability has another important consequence.
+Reusability has an important consequence.
 
-If we improve the accessibility of one reusable component, that improvement can benefit every instance.
+If we improve the accessibility of one component, that improvement can benefit every instance.
 
-If the component has an accessibility problem, however, we may reproduce that problem throughout our website.
+If our component has an accessibility problem, however, we may reproduce that problem throughout our website.
+
+## Semantic HTML
 
 Consider these two elements:
 
@@ -576,31 +1187,74 @@ They can be styled to look identical.
 
 But they do not communicate the same information to the browser.
 
-A native button already supports keyboard interaction, focus, and recognizable button semantics.
+A native button already supports:
+
+- Keyboard interaction
+- Focus
+- Recognizable button semantics
+- Activation through assistive technologies
 
 A clickable `div` does not automatically provide those behaviors.
 
-Whenever possible, use the HTML element that already expresses your intention.
+Similarly, creating a custom element does not automatically give it the accessibility features of a native interactive element.
 
-## Communicating Change
+Whenever possible, use semantic HTML inside your custom components.
 
-Notice this attribute from our character template:
+```html
+<story-character>
+  <h2>Luna</h2>
+  <button>Speak to Luna</button>
+  <p></p>
+</story-character>
+```
+
+The custom element organizes the component.
+
+The native HTML elements communicate its internal structure and functionality.
+
+## Communicating Change — ARIA Live Regions
+
+When JavaScript changes the contents of an element, that change may be immediately visible to some visitors but unnoticed by others.
+
+Consider our character's response.
 
 ```html
 <p class="response" aria-live="polite"></p>
 ```
 
-`aria-live="polite"` helps assistive technologies announce changes to this element without unnecessarily interrupting the visitor.
+When the visitor clicks a button, JavaScript updates the paragraph.
 
-This is useful when JavaScript updates information without navigating to another page.
+```js
+this.response.textContent = this.character.greet();
+```
 
-Use live regions for meaningful updates, rather than every small visual change.
+A screen reader may not otherwise announce this change, especially if the visitor's focus remains on the button.
+
+The `aria-live` attribute identifies a region whose changing content should be communicated to assistive technologies.
+
+| Value | Behavior |
+|---|---|
+| `off` | Changes are not normally announced |
+| `polite` | Changes are announced at the next suitable opportunity |
+| `assertive` | Urgent changes may interrupt the current announcement |
+
+Live regions can be useful for:
+
+- Character dialogue
+- Form confirmations
+- Search results
+- Game outcomes
+- Loading and error messages
+
+Avoid announcing every small visual change, such as animation frames or continuously changing mouse coordinates.
+
+Communicate changes that are meaningful to the visitor.
 
 ## Accessibility Experiment
 
 Exchange your component-based experience with another student.
 
-Navigate it using only the keyboard.
+Navigate the experience using only the keyboard.
 
 Try:
 
@@ -611,17 +1265,19 @@ Try:
 
 Can you reach every interactive element?
 
-Can you tell which element currently has focus?
+Can you identify which element currently has focus?
 
 Can you activate the controls?
 
 Does the interface communicate what changed?
 
-Check the page using an accessibility tool:
+Check your page using an accessibility evaluation tool.
 
 - [WAVE](https://wave.webaim.org/)
 - [axe DevTools](https://www.deque.com/axe/devtools/)
 - Lighthouse in Chrome Developer Tools
+
+You can also experiment with your operating system's built-in screen reader, such as VoiceOver on macOS or Narrator on Windows.
 
 Automated tools can reveal certain problems, but they cannot determine whether an experience is fully accessible.
 
@@ -631,18 +1287,19 @@ Could improving a single component improve the entire experience?
 
 ---
 
-# 9. From Components to Systems
+# 11. From Components to Systems
 
-So far, each character maintains its own information.
+So far, each of our characters behaves independently.
 
-But what if characters could affect one another?
+But what happens when entities begin to affect one another?
 
-Add another method to the `Character` class:
+Let's add a method to our original `Character` class.
 
 ```js
 meet(otherCharacter) {
 
   this.curiosity++;
+  otherCharacter.curiosity++;
 
   return `${this.name} meets ${otherCharacter.name}.`;
 
@@ -655,6 +1312,7 @@ Now try:
 luna.meet(sol);
 
 console.log(luna.curiosity);
+console.log(sol.curiosity);
 ```
 
 An object can receive another object as an argument.
@@ -663,22 +1321,20 @@ This allows us to describe relationships.
 
 Imagine:
 
-- Characters exchanging information
-- Creatures competing for resources
-- Objects being collected by a visitor
-- Rooms sharing clues
-- Musical instruments responding to one another
-- Cards changing the behavior of other cards
+- Characters exchanging information.
+- Creatures competing for resources.
+- Objects being collected by a visitor.
+- Rooms sharing clues.
+- Musical instruments responding to one another.
+- Cards changing the behavior of other cards.
 
 The experience no longer depends only on individual entities.
 
 It depends on their relationships.
 
-## Composition
+## Collections and Shared State
 
-An object can also contain a collection of other objects.
-
-For example:
+We can also create objects that contain collections of other objects.
 
 ```js
 const town = {
@@ -687,7 +1343,7 @@ const town = {
 };
 ```
 
-Or:
+Or define an object representing the visitor.
 
 ```js
 const visitor = {
@@ -697,11 +1353,24 @@ const visitor = {
 };
 ```
 
+Different components might contribute to or respond to this shared information.
+
 We can build larger structures by combining smaller ones.
 
-This is one form of **composition**.
+```text
+Experience
+├── Visitor
+│   ├── Inventory
+│   └── Visited Places
+├── Town
+│   └── Characters
+└── Interface
+    ├── Character Elements
+    ├── Inventory Display
+    └── Navigation
+```
 
-Instead of describing everything in one enormous object or function, we can give different parts of the experience their own responsibilities.
+Rather than describing everything in one enormous object or function, we can give different parts of the experience their own responsibilities.
 
 ---
 
@@ -732,98 +1401,26 @@ Does the behavior remain predictable?
 
 Can an unexpected outcome emerge?
 
-**The story may emerge from the relationships between the parts rather than from any individual part.**
+The story may emerge from the relationships between the parts rather than from any individual part.
 
 ---
 
-# 10. Organizing a Growing Project
+# 12. Choosing an Appropriate Structure
 
-Until now, we have often worked with three files:
+Today, we explored several ways of organizing information, behavior, and interfaces.
 
-```text
-index.html
-style.css
-script.js
-```
+| Approach | Purpose |
+|---|---|
+| Module | Organizes and shares code |
+| Function | Encapsulates a reusable operation |
+| Object | Groups related information and behavior |
+| Class | Defines a shared structure for instances |
+| Inheritance | Extends an existing type of object |
+| Component | Provides a reusable part of an interface |
+| Custom Element | Extends the vocabulary of HTML |
+| Composition | Combines smaller entities into larger ones |
 
-This structure is perfectly appropriate for many projects.
-
-As a project grows, however, we might want to separate different responsibilities.
-
-For example:
-
-```text
-project/
-├── index.html
-├── style.css
-├── images/
-├── data/
-│   └── characters.json
-└── js/
-    ├── Character.js
-    ├── components.js
-    └── main.js
-```
-
-We could put the character class in its own file.
-
-## Character.js
-
-```js
-export class Character {
-
-  constructor(name, greeting) {
-
-    this.name = name;
-    this.greeting = greeting;
-
-  }
-
-  greet() {
-
-    return `${this.name}: ${this.greeting}`;
-
-  }
-
-}
-```
-
-## main.js
-
-```js
-import { Character } from "./Character.js";
-
-const luna = new Character(
-  "Luna",
-  "Have you seen the moon tonight?"
-);
-
-console.log(luna.greet());
-```
-
-## index.html
-
-```html
-<script type="module" src="js/main.js"></script>
-```
-
-JavaScript modules allow us to import and export definitions between files.
-
-A module script is deferred by default, so we do not need to add the `defer` attribute.
-
-Use a local development server when working with modules rather than opening your HTML through `file://`.
-
-You do not need to divide every project into many files.
-
-The purpose of organization is to make the project easier to understand.
-
----
-
-# 11. When Not to Abstract
-
-Classes, components, and modules are tools.
-
-They are not requirements for every project.
+These are tools, not requirements for every project.
 
 Sometimes a simple function is enough.
 
@@ -837,19 +1434,14 @@ Ask yourself:
 - Do several entities share behavior?
 - Do individual entities need their own state?
 - Would separating this code make it easier to understand?
-- Am I creating complexity to solve a problem I do not actually have?
+- Could this part be useful in another project?
+- Am I introducing complexity to solve a problem I do not actually have?
 
-There are libraries and frameworks that provide more elaborate ways to organize components and applications.
-
-But the underlying ideas are already available to us through HTML, CSS, and JavaScript.
-
-Choose the simplest structure that supports your intention.
-
-**An abstraction should make an idea easier to think about, not merely make the code look more sophisticated.**
+An abstraction should make an idea easier to think about, not merely make the code look more sophisticated.
 
 ---
 
-# 12. Final Project — Designing the Experience
+# 13. Final Project — Designing the Experience
 
 Next week, we will present our final-project designs.
 
@@ -877,7 +1469,7 @@ You do not need to use every technique.
 
 ## Final Project Design Presentation
 
-Prepare a short presentation that communicates:
+Prepare a short presentation that communicates the following.
 
 ### Concept and Intention
 
@@ -949,15 +1541,16 @@ Design an experience that is ambitious in its intention but realistic in its imp
 
 # Field Notes
 
-**What became easier to think about after you modeled it? What abstraction made the project harder to understand?**
+**What became easier to create or understand when you began thinking in reusable parts?**
 
 Consider:
 
+- What became easier when you separated your code into modules?
 - What did your entities share?
 - What made each instance individual?
-- How did shared rules produce different behaviors?
-- What became easier when you introduced reusable components?
-- What happened when entities began interacting?
+- What was inherited, and what was specialized?
+- How did you decide where information and behavior should belong?
+- What possibilities emerged when you created your own HTML elements?
 - What accessibility issues did you discover?
 - Where was a simpler approach more appropriate?
 - What could these ideas contribute to your final project?
@@ -976,9 +1569,11 @@ Create a small experience involving repeated entities, reusable components, or s
 
 Consider how repetition and variation contribute to the experience.
 
-- [ ] Use a class or reusable function where appropriate.
-- [ ] Create multiple instances or components.
+- [ ] Organize your JavaScript into modules.
+- [ ] Create a reusable class or component.
+- [ ] Create multiple instances.
 - [ ] Introduce meaningful variation or interaction.
+- [ ] Experiment with a custom HTML element.
 - [ ] Test the experience using keyboard navigation.
 - [ ] Document your discoveries in your Field Notes.
 
@@ -1013,16 +1608,29 @@ Include links to your work and presentation materials.
 
 # Resources
 
-### JavaScript
+## JavaScript Modules
 
+- [MDN — JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- [JavaScript.info — Export and Import](https://javascript.info/import-export)
+
+## Objects and Classes
+
+- [MDN — Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects)
 - [MDN — Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 - [JavaScript.info — Class Basic Syntax](https://javascript.info/class)
-- [MDN — Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects)
+- [JavaScript.info — Class Inheritance](https://javascript.info/class-inheritance)
+
+## DOM and Web Components
+
+- [MDN — Document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [MDN — HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)
+- [MDN — Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
+- [MDN — Using Custom Elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements)
 - [MDN — HTML Template Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/template)
-- [MDN — JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
-### Accessibility
+## Accessibility
 
+- [MDN — ARIA Live Regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions)
 - [Inclusive Components](https://inclusive-components.design/)
 - [The A11Y Project — Checklist](https://www.a11yproject.com/checklist/)
 - [WebAIM — Keyboard Accessibility](https://webaim.org/techniques/keyboard/)
