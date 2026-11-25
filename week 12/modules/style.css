@@ -1,0 +1,22 @@
+#character-section {
+  display: flex;
+}
+
+.character-card {
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+}
+
+.explorer {
+  background-color: aqua;
+}
+
+.explorer::after{
+  content: 'E';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
